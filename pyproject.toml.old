@@ -1,18 +1,11 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-name = "rednotebook"
-version = "0.1.0"
-description = "Your project description"
-authors = []
-
-[tool.poetry.dependencies]
-python = "^3.6"
-gi = ">=3.44.1"
-
-pytest = "*"
+# NOTE: you have to use single-quoted strings in TOML for regular expressions.
+# It's the equivalent of r-strings in Python.  Multiline strings are treated as
+# verbose regular expressions by Black.  Use [ ] to denote a significant space
+# character.
 
 [tool.black]
 line-length = 88
@@ -25,6 +18,7 @@ exclude = '''
   | \.venv
   | build
   | dist
+  # Custom
   | external
 )/
 '''
@@ -37,7 +31,7 @@ include_trailing_comma = true
 known_first_party = "rednotebook"
 known_third_party = "gi,pytest"
 line_length = 88
-lines_after_imports = 2
+lines_after_imports = 2  # -1 puts 2 lines before classes and functions, otherwise 1 line
 multi_line_output = 3
 order_by_type = false
-skip = "external,journal.py,main_window.py"
+skip= "external,journal.py,main_window.py"
